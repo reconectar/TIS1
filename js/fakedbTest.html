@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        header {
+            overflow: auto
+        }
+
+        #logo {
+            width: 200px;
+            background-color: gray;
+            padding: 30px 120px;
+            margin: 0 50px;
+            border: solid 3px black;
+        }
+    </style>
+
+    <script src="fakedb.js"></script>
+    <script>
+        var sHtml = '';
+        function loadData() {
+            db = dados.results.data;
+            for (i = 0; i < db.length; i++) {
+                sHtml += `<p>Tipo de Banheiro: ${db[i].toilettype} <br>
+                Endereço: ${db[i].address.street}, ${db[i].address.number} - ${db[i].address.city}<br>
+                Local: ${db[i].locationtype}</p>`;
+            }
+            document.getElementById('tela').innerHTML = sHtml;
+        }
+
+    </script>
+</head>
+
+<body onload="loadData()">
+    <div id="logo">
+        <img src="https://goo.gl/images/RLMRYj" width="200px">
+    </div>
+    <div id="tela"></div>
+</body>
+
+</html>

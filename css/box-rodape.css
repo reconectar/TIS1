@@ -1,0 +1,14 @@
+/********************
+Componente box-rodape
+********************/
+.box-rodape {
+    display: inline-block;
+}
+
+.box-rodape > .conteudo {
+
+}
+
+.box-rodape > .titulo {
+
+}
