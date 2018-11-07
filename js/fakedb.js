@@ -4,74 +4,39 @@ var dados = {
         "data": [
             {
                 "id": 1,
-                "toilettype": "Químico",
-                "locationtype": "Parque Ecologico",
-                "address": {
-                    "street": "American Drive",
-                    "number": "1621",
-                    "city": "Tallahassee"
-
-                },
-                "coordinates": {
-                    "lat": -19.932483,
-                    "lng": -43.938079
-                }
+                "title": "Praça da Liberdade \nBanheiro publico\nLimpo.",
+                "longitude": "-43.938078",
+                "latitude": "-19.932482"
             },
             {
                 "id": 2,
-                "toilettype": "Acessível",
-                "locationtype": "McDonald's",
-                "address": {
-                    "street": "Kulas Light",
-                    "number": "556",
-                    "city": "Gwenborough"
-                },
-                "coordinates": {
-                    "lat": -19.932484,
-                    "lng": -43.938080
-                }
+                "title": "Rua Ricardo Almeida\nBanheiro pago\nDentro do restaurante Santo Augusto\nAcesso para deficiente\nLimpo",
+                "longitude": "-43.937169",
+                "latitude": "-19.933168"
             },
             {
                 "id": 3,
-                "toilettype": "Comum",
-                "locationtype": "Shopping",
-                "address": {
-                    "street": "Harry Place",
-                    "number": "4108",
-                    "city": "Concord"
-                },
-                "coordinates": {
-                    "lat": -19.932485,
-                    "lng": -43.938081
-                }
+                "title": "Rua Marlene Penha\nBanheiro publico\nNa lanchonete Sinhazinha",
+                "longitude": "-43.941105",
+                "latitude": "-19.933869"
             },
             {
                 "id": 4,
-                "toilettype": "Comum",
-                "locationtype": "Café",
-                "address": {
-                    "street": "Jett Lane",
-                    "number": "2497",
-                    "city": "Irvine"
-                },
-                "coordinates": {
-                    "lat": -19.932486,
-                    "lng": -43.938082
-                }
+                "title": "Rua Alberto Magalhães\nBanheiro pago\nDentro da Lojas rede\nAcesso para deficiente\nLimpo",
+                "longitude": "-43.934410",
+                "latitude": "-19.934071"
             },
             {
                 "id": 5,
-                "toilettype": "Acessível",
-                "locationtype": "Posto de Gasolina",
-                "address": {
-                    "street": "Penn Street",
-                    "number": "5648",
-                    "city": "Manchester"
-                },
-                "coordinates": {
-                    "lat": -19.932487,
-                    "lng": -43.938083
-                }
+                "title": "Rua pedro paulo\nBanheiro Quimico\nNa calçada",
+                "longitude": "-43.937682",
+                "latitude": "-19.927182"
+            },
+            {
+                "id": 6,
+                "title": "Rua 18 de julho\nBanheiro Pago\nDentro do Shopping BH",
+                "longitude": "-43.932951",
+                "latitude": "-19.927152"
             }
         ]
     }
