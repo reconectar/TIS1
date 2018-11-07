@@ -20,20 +20,20 @@
         }
     </style>
 
-    <script src="fakedb.js"></script>
+        <script src="fakedb.js"></script>
     <script>
         var sHtml = '';
         function loadData() {
             db = dados.results.data;
             for (i = 0; i < db.length; i++) {
-                sHtml += `<p>Tipo de Banheiro: ${db[i].toilettype} <br>
-                Endereço: ${db[i].address.street}, ${db[i].address.number} - ${db[i].address.city}<br>
-                Local: ${db[i].locationtype}</p>`;
-            }
-            document.getElementById('tela').innerHTML = sHtml;
+                sHtml += `<p>Localização: ${db[i].title},<br>
+                Longitude: ${db[i].longitude},<br>
+                Latitude: ${db[i].latitude}</p>`;
         }
+        document.getElementById('tela').innerHTML = sHtml;
+    }
 
-    </script>
+</script>
 </head>
 
 <body onload="loadData()">
