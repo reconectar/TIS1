@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Banheiro na rua</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Importa as fontes para este projeto-->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="device-mockups/device-mockups.min.css">
+
+    <!-- Importa o CSS utilizado neste projeto -->
+    <link href="css/style.css" rel="stylesheet">
+    
+    
+
+</head>
+
+<body id="page-top">
+
+    <!-- Navegação -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">Banheiro na rua</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#download">Filtros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#Como Funciona">Visualizar em lista</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#contato">Adicionar banheiros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#contato">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#contato">Informações úteis</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="masthead">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-lg-6 my-auto">
+                    <div class="header-content mx-auto">
+                        <img src="img\logo.png" class="img-logo" alt="logo">
+                    </div>
+                </div>
+                <!DOCTYPE html>
+<html>
+    <body>
+<!--Novo mapa com marcadores e descrição-->
+        <div id="googleMap" style="width:100%;height:600px;"></div>
+        
+        <script>
+        function myMap() {
+
+            navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+          })
+
+         
+          var myCenter = new google.maps.LatLng(-19.932482, -43.938078);
+          var puc = new google.maps.LatLng(-19.933168,-43.937169);
+          var mapCanvas = document.getElementById("googleMap");
+          var mapOptions = {center: myCenter, zoom: 16};
+          var map = new google.maps.Map(mapCanvas, mapOptions);
+         
+          
+
+            // Fake json 
+
+            var json = [{"id":1,"title":"Praça da Liberdade \nBanheiro publico\nLimpo.","longitude":"-43.938078","latitude":"-19.932482"},
+            {"id":2,"title":"Rua Ricardo Almeida\nBanheiro pago\nDentro do restaurante Santo Augusto\nAcesso para deficiente\nLimpo","longitude":"-43.937169","latitude":"-19.933168"},
+            {"id":3,"title":"Rua Marlene Penha\nBanheiro publico\nNa lanchonete Sinhazinha","longitude":"-43.941105","latitude":"-19.933869"},
+            {"id":4,"title":"Rua Alberto Magalhães\nBanheiro pago\nDentro da Lojas rede\nAcesso para deficiente\nLimpo","longitude":"-43.934410","latitude":"-19.934071"},
+            {"id":5,"title":"Rua pedro paulo\nBanheiro Quimico\nNa calçada","longitude":"-43.937682","latitude":"-19.927182"},
+            {"id":6,"title":"Rua 18 de julho\nBanheiro Pago\nDentro do Shopping BH","longitude":"-43.932951","latitude":"-19.927152"}];
+
+            //adcionando marcadores para e descrições no mapa
+        for(var i = 0; i < json.length; i++) {
+    
+            // Current object
+            var obj = json[i];
+
+            // Adding a new marker for the object
+            var customIcon = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+            var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(obj.latitude,obj.longitude),
+            map: map,
+            title: obj.title,
+            icon: customIcon // this works, giving the marker a title with the correct title
+            });
+
+            var clicker = addClicker(marker, obj.title);
+    
+  } 
+  //função que mostra a descrição quando passa o moude no marcador
+  function addClicker(marker, content) {
+    google.maps.event.addListener(marker, 'click', function() {
+      
+      if (infowindow) {infowindow.close();}
+      infowindow = new google.maps.InfoWindow({content: content});
+      infowindow.open(map, marker);
+      
+    });
+  }
+        }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC451DUvE76cq7Qko59ESBn-bpsaGHKrT8&callback=myMap"></script>
+        </body>
+</html>
+            </div>
+        </div>
+    </header>
+
+    <section class="download bg-primary text-center" id="download">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <h2 class="section-heading">Está apertado? Encontre o banheiro mais perto de você.</h2>
+                    <p>Nosso app está disponível para iOS e Android.</p>
+                    <div class="badges">
+                        <a class="badge-link" href="#">
+                            <img src="img/google-play-badge.svg" alt="Google Play">
+                        </a>
+                        <a class="badge-link" href="#">
+                            <img src="img/app-store-badge.svg" alt="App Store">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-heading text-center">
+                <h2>Novos banheiros são adicionados pelo próprio usuário.</h2>
+                <img src="img\banheiro-publico.jpg" class="img-banheiro" alt="Banheiro público">
+            </div>
+            <div class="row">
+                <div class="col-lg-8 my-auto">
+
+                </div>
+                <div class="col-lg-4 my-auto">
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="feature-item">
+                                    <i class="icon-present text-primary"></i>
+                                    <h3>Gratuito</h3>
+                                    <p class="text-muted">Download grátis!</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="cta-content">
+            <div class="container">
+                <h2>Começe a procurar</h2>
+                <a href="#contact" class="btn btn-outline btn-xl js-scroll-trigger">Vamos começar!</a>
+                <img src="img\banho2.png" class="img-banheiro" alt="Banheiro público">
+            </div>
+        </div>
+        <div class="overlay"></div>
+    </section>
+
+    <section class="contact bg-primary" id="contact">
+        <div class="container">
+            <h2>We
+                <i class="fa fa-heart"></i> new friends!</h2>
+            <ul class="list-inline list-social">
+                <li class="list-inline-item social-twitter">
+                    <a href="#">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item social-facebook">
+                    <a href="#">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item social-google-plus">
+                    <a href="#">
+                        <i class="fa fa-google-plus"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2017 Mastertech. All Rights Reserved.</p>
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a href="#">Privacy</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#">Terms</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#">FAQ</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper/popper.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/new-age.min.js"></script>
+
+    <!-- Importa o Javascript utilizado neste projeto -->
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
