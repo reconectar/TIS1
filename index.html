@@ -25,7 +25,6 @@
     <link href="css/style.css" rel="stylesheet">
 
 
-
 </head>
 
 <body id="page-top">
@@ -71,127 +70,127 @@
                 <html>
 
                 <body>
-    <!--Novo mapa com marcadores e descrição-->
-    <div id="map" style="width:100%;height:600px;"></div>
-    <script>
-        // Note: This example requires that you consent to location sharing when
-        // prompted by your browser. If you see the error "The Geolocation service
-        // failed.", it means you probably did not give permission for the browser to
-        // locate you.
-        var map, infoWindow;
+                    <!--Novo mapa com marcadores e descrição-->
+                    <div id="map" style="width:100%;height:600px; color: black" !important></div>
+                    <script>
+                        // Note: This example requires that you consent to location sharing when
+                        // prompted by your browser. If you see the error "The Geolocation service
+                        // failed.", it means you probably did not give permission for the browser to
+                        // locate you.
+                        var map, infoWindow;
 
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: {
-                    lat: -19.932482,
-                    lng: -43.938078
-                },
-                zoom: 15
-            });
-            infoWindow = new google.maps.InfoWindow;
+                        function initMap() {
+                            map = new google.maps.Map(document.getElementById('map'), {
+                                center: {
+                                    lat: -19.932482,
+                                    lng: -43.938078
+                                },
+                                zoom: 15
+                            });
+                            infoWindow = new google.maps.InfoWindow;
 
-            // Try HTML5 geolocation.
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var pos = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
+                            if (navigator.geolocation) {
+                                navigator.geolocation.getCurrentPosition(function(position) {
+                                    var pos = {
+                                        lat: position.coords.latitude,
+                                        lng: position.coords.longitude
+                                    };
 
-                    infoWindow.setPosition(pos);
-                    infoWindow.setContent('Location found.');
-                    infoWindow.open(map);
-                    map.setCenter(pos);
-                }, function() {
-                    handleLocationError(true, infoWindow, map.getCenter());
-                });
-            } else {
-                // Browser doesn't support Geolocation
-                handleLocationError(false, infoWindow, map.getCenter());
-            }
+                                    infoWindow.setPosition(pos);
+                                    infoWindow.setContent('Location found.');
+                                    infoWindow.open(map);
+                                    map.setCenter(pos);
+                                }, function() {
+                                    handleLocationError(true, infoWindow, map.getCenter());
+                                });
+                            } else {
+                                // Browser nao suporta geolocalização
+                                handleLocationError(false, infoWindow, map.getCenter());
+                            }
 
-            var json = [{
-                    "id": 1,
-                    "title": "Praça da Liberdade \nBanheiro publico\nLimpo.",
-                    "longitude": "-43.938078",
-                    "latitude": "-19.932482"
-                },
-                {
-                    "id": 2,
-                    "title": "Rua Ricardo Almeida\nBanheiro pago\nDentro do restaurante Santo Augusto\nAcesso para deficiente\nLimpo",
-                    "longitude": "-43.937169",
-                    "latitude": "-19.933168"
-                },
-                {
-                    "id": 3,
-                    "title": "Rua Marlene Penha\nBanheiro publico\nNa lanchonete Sinhazinha",
-                    "longitude": "-43.941105",
-                    "latitude": "-19.933869"
-                },
-                {
-                    "id": 4,
-                    "title": "Rua Alberto Magalhães\nBanheiro pago\nDentro da Lojas rede\nAcesso para deficiente\nLimpo",
-                    "longitude": "-43.934410",
-                    "latitude": "-19.934071"
-                },
-                {
-                    "id": 5,
-                    "title": "Rua pedro paulo\nBanheiro Quimico\nNa calçada",
-                    "longitude": "-43.937682",
-                    "latitude": "-19.927182"
-                },
-                {
-                    "id": 6,
-                    "title": "Rua 18 de julho\nBanheiro Pago\nDentro do Shopping BH",
-                    "longitude": "-43.932951",
-                    "latitude": "-19.927152"
-                }
-            ];
+                            var json = [{
+                                    "id": 1,
+                                    "title": "Praça da Liberdade \nBanheiro publico\nLimpo.",
+                                    "longitude": "-43.938078",
+                                    "latitude": "-19.932482"
+                                },
+                                {
+                                    "id": 2,
+                                    "title": "Rua Ricardo Almeida\nBanheiro pago\nDentro do restaurante Santo Augusto\nAcesso para deficiente\nLimpo",
+                                    "longitude": "-43.937169",
+                                    "latitude": "-19.933168"
+                                },
+                                {
+                                    "id": 3,
+                                    "title": "Rua Marlene Penha\nBanheiro publico\nNa lanchonete Sinhazinha",
+                                    "longitude": "-43.941105",
+                                    "latitude": "-19.933869"
+                                },
+                                {
+                                    "id": 4,
+                                    "title": "Rua Alberto Magalhães\nBanheiro pago\nDentro da Lojas rede\nAcesso para deficiente\nLimpo",
+                                    "longitude": "-43.934410",
+                                    "latitude": "-19.934071"
+                                },
+                                {
+                                    "id": 5,
+                                    "title": "Rua pedro paulo\nBanheiro Quimico\nNa calçada",
+                                    "longitude": "-43.937682",
+                                    "latitude": "-19.927182"
+                                },
+                                {
+                                    "id": 6,
+                                    "title": "Rua 18 de julho\nBanheiro Pago\nDentro do Shopping BH",
+                                    "longitude": "-43.932951",
+                                    "latitude": "-19.927152"
+                                }
+                            ];
 
-            for (var i = 0; i < json.length; i++) {
+                            for (var i = 0; i < json.length; i++) {
 
-                // Current object
-                var obj = json[i];
+                                // Current object
+                                var obj = json[i];
 
-                // Adding a new marker for the object
-                var customIcon = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
-                var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(obj.latitude, obj.longitude),
-                    map: map,
-                    title: obj.title,
-                    icon: customIcon // this works, giving the marker a title with the correct title
-                });
+                                // Adding a new marker for the object
+                                var customIcon = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+                                var marker = new google.maps.Marker({
+                                    position: new google.maps.LatLng(obj.latitude, obj.longitude),
+                                    map: map,
+                                    title: obj.title,
+                                    icon: customIcon // this works, giving the marker a title with the correct title
+                                });
 
-                var clicker = addClicker(marker, obj.title);
+                                var clicker = addClicker(marker, obj.title);
 
-            }
+                            }
 
-            function addClicker(marker, content) {
-                google.maps.event.addListener(marker, 'click', function() {
+                            function addClicker(marker, content) {
+                                google.maps.event.addListener(marker, 'click', function() {
 
-                    if (infowindow) {
-                        infowindow.close();
-                    }
-                    infowindow = new google.maps.InfoWindow({
-                        content: content
-                    });
-                    infowindow.open(map, marker);
+                                    if (infowindow) {
+                                        infowindow.close();
+                                    }
+                                    infowindow = new google.maps.InfoWindow({
+                                        content: content
+                                    });
+                                    infowindow.open(map, marker);
 
-                });
-            }
-        }
+                                });
+                            }
+                        }
 
-        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-            infoWindow.setPosition(pos);
-            infoWindow.setContent(browserHasGeolocation ?
-                'Error: The Geolocation service failed.' :
-                'Error: Your browser doesn\'t support geolocation.');
-            infoWindow.open(map);
-        }
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC451DUvE76cq7Qko59ESBn-bpsaGHKrT8&callback=initMap">
-    </script>
-</body>
+                        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                            infoWindow.setPosition(pos);
+                            infoWindow.setContent(browserHasGeolocation ?
+                                'Error: The Geolocation service failed.' :
+                                'Error: Your browser doesn\'t support geolocation.');
+                            infoWindow.open(map);
+                        }
+
+                    </script>
+                    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC451DUvE76cq7Qko59ESBn-bpsaGHKrT8&callback=initMap">
+                    </script>
+                </body>
 
                 </html>
             </div>
