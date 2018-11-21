@@ -32,10 +32,11 @@ hr.light {
 }
 
 .img-logo {
-    width: 70px;
-    height: 120px;
-    padding: 100px;
-    margin: 25px auto 0;
+    width: auto;
+    height: 100px;
+    padding: 10px;
+    margin: 36px auto 0;
+    margin-left: -30px;
 }
 
 .img-googlemaps {
@@ -66,12 +67,12 @@ h4,
 h5,
 h6 {
     font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
-    font-weight: 400;
+    font-weight: 200;
     letter-spacing: 1px;
 }
 
 p {
-    font-size: 25px;
+    font-size: 18px;
     line-height: 1.5;
     margin-bottom: 20px;
 }
@@ -91,16 +92,15 @@ section h2 {
     -moz-transition: all .35s;
     transition: all .35s;
     font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
-    font-weight: 300;
+    font-weight: 200;
     letter-spacing: 1px;
 }
 
 #mainNav .navbar-brand {
-    color: #f0850c;
+    color: #fdcc52;
     font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
-    font-weight: 500;
+    font-weight: 200;
     letter-spacing: 1px;
-    font-size: 30px;
 }
 
 #mainNav .navbar-brand:hover,
@@ -484,6 +484,10 @@ footer ul li a.active {
 .btn-xl {
     font-size: 11px;
     padding: 15px 45px;
+}
+
+#mapFilters {
+    margin-bottom: 16em;
 }
 
 
