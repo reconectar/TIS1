@@ -5,7 +5,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>Banheiro na rua</title>
 
     <!-- Bootstrap core CSS -->
@@ -17,7 +17,6 @@
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 
     <!-- Plugin CSS -->
     <link rel="stylesheet" href="device-mockups/device-mockups.min.css">
@@ -27,52 +26,6 @@
 
 
 </head>
-<style>
-    body {font-family: Arial, Helvetica, sans-serif;}
-        
-        /* The Modal (background) */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-        
-        /* Modal Content */
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-        }
-        
-        /* The Close Button */
-        .close {
-            color: #aaaaaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .foto{
-           float: right;
-           width: 200PX;
-        }
-        </style>
 
 <body id="page-top">
 
@@ -80,37 +33,28 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">Banheiro na rua</a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="#download">Filtros</a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" onclick="mostraModal()" href="#Como Funciona">Visualizar
-                            em lista</a>
+                        <a class="nav-link js-scroll-trigger" href="#Como Funciona">Visualizar em lista</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" onclick="abrirFormulario()" href="#contato">Adicionar
-                            banheiros</a>
-
+                        <a class="nav-link js-scroll-trigger" href="#contato">Adicionar banheiros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#contato">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#contato">Informações úteis</a>
+                    </li>
+                </ul>
             </div>
-            </li>
-
-            <!--<li class="nav-item">
-                <a class="nav-link js-scroll-trigger" onclick="mostraModal2()" href="#contato">Contato</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" onclick="mostraModal3()" href="#contato">Informações úteis</a>
-            </li>-->
-            </ul>
-        </div>
         </div>
     </nav>
 
@@ -126,24 +70,136 @@
                 <html>
 
                 <body>
+    <!--Novo mapa com marcadores e descrição-->
+    <div id = "mapFilters" style="width:100%;height:524px">
+            <select id="tipo">
+                    <option value="0" hidden>Tipo...</option>
+                    <option value="1">Químico</option>
+                    <option value="2">Particular</option>
+                    <option value="3">Público</option>
+            </select id="pago">
+            <select>
+                    <option value="0" hidden>Pago?...</option>
+                    <option value="1">Sim</option>
+                    <option value="2">Não</option>
+            </select>
+            <select id="especial">
+                    <option value="0" hidden>Necessidades especiais...</option>
+                    <option value="1">Sim</option>
+                    <option value="2">Não</option>
+            </select>
+            <select id="modo" class="float-right">
+                    <option value="1" hidden>Modo...</option>
+                    <option value="1">Andando</option>
+                    <option value="2">Dirigindo</option>
+                    <option value="3">Transporte Publico</option>
+            </select>    
+    <div id="map" style="width:100%;height:500px; color: black" !important></div>
+    </div>
+    <script src="js/fakedb.js"></script>
+    <script>
+        // Note: This example requires that you consent to location sharing when
+        // prompted by your browser. If you see the error "The Geolocation service
+        // failed.", it means you probably did not give permission for the browser to
+        // locate you.
+        var map, infoWindow;
+        //directionDisplay.
 
-                    <div id="googleMap" style="width:100%;height:600px;"></div>
+        function initMap() {
+            var directionsService = new google.maps.DirectionsService();
+            var directionsDisplay = new google.maps.DirectionsRenderer();
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {
+                    lat: -19.932482,
+                    lng: -43.938078
+                },
+                zoom: 15,
+            });
 
-                    <script>
-                        function myMap() {
-                            var myCenter = new google.maps.LatLng(-19.932482, -43.938078);
-                            var puc = new google.maps.LatLng(-19.933168, -43.937169);
-                            var mapCanvas = document.getElementById("googleMap");
-                            var mapOptions = { center: myCenter, zoom: 18 };
-                            var map = new google.maps.Map(mapCanvas, mapOptions);
-                            var marker = new google.maps.Marker({ position: myCenter });
-                            var marker2 = new google.maps.Marker({ position: puc });
-                            marker.setMap(map);
-                            marker2.setMap(map);
-                        }
-                    </script>
-                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC451DUvE76cq7Qko59ESBn-bpsaGHKrT8&callback=myMap"></script>
-                </body>
+            directionsDisplay.setMap(map);
+
+            infoWindow = new google.maps.InfoWindow;
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent('Location found.');
+                    infoWindow.open(map);
+                    map.setCenter(pos);
+                }, function() {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser nao suporta geolocalização
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+
+            for (var i = 0; i < json.length; i++) {
+
+                // Current object
+                var obj = json[i];
+
+                // Adding a new marker for the object
+                var customIcon = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(obj.latitude, obj.longitude),
+                    map: map,
+                    title: obj.title,
+                    icon: customIcon // this works, giving the marker a title with the correct title
+                });
+
+                var clicker = addClicker(marker, obj.title);
+
+            }
+
+            function calcRoute() {
+            var selectedMode =  "WALKING"; //document.getElementById('mode').value;
+            var request = {
+                origin: pos,
+                destination: center,
+                // Note that Javascript allows us to access the constant
+                // using square brackets and a string value as its
+                // "property."
+                travelMode: google.maps.TravelMode[selectedMode]
+            };
+            directionsService.route(request, function(response, status) {
+                if (status == 'OK') {
+                directionsDisplay.setDirections(response);
+                }
+            });
+            }
+
+            function addClicker(marker, content) {
+                google.maps.event.addListener(marker, 'click', function() {
+
+                    if (infowindow) {
+                        infowindow.close();
+                    }
+                    infowindow = new google.maps.InfoWindow({
+                        content: content
+                    });
+                    infowindow.open(map, marker);
+
+                });
+            }
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                'Error: The Geolocation service failed.' :
+                'Error: Your browser doesn\'t support geolocation.');
+            infoWindow.open(map);
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC451DUvE76cq7Qko59ESBn-bpsaGHKrT8&callback=initMap">
+    </script>
+</body>
 
                 </html>
             </div>
@@ -164,8 +220,6 @@
         </div>
     </section>
     <!--    Página 2 - Visualizar banheiros em lista   -->
-
-
     <section class="features" id="features">
         <div class="container">
             <div class="section-heading text-center">
@@ -174,7 +228,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 my-auto">
-                    <img src="img\pg em_construcao1.jpg" class="img-construcao" alt="Banheiro público">
+                    <img src="img\pg_em_construcao1.jpg" class="img-construcao" alt="Banheiro público">
                 </div>
                 <div class="col-lg-4 my-auto">
                     <div class="container-fluid">
@@ -185,9 +239,6 @@
             </div>
         </div>
     </section>
-
-
-
     <!--    Página 3 - Adicionar novos banheiros   -->
     <section class="cta">
         <div class="cta-content">
@@ -202,331 +253,89 @@
 
         </div>
     </section>
-    <!DOCTYPE html>
 
-    <!--    BAGUNÇA   -->
-    <!-- Fechar modal -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span onclick="fechaModal()" class="close">&times;</span>
-            <div id="conteudo" style="display:inline-block"></div>
-            <div class="col-3" id="image" style="float:right"> </div>
-        </div>
-    </div>
-
-    
-    <!-- Modal para o formulário de INSERÇÃO de novos banheiros -->
-    <div id="myModal3" class="modal">
-        <div class="modal-content">
-            <span onclick="fechaModal3()" class="close">&times;</span>
-            <div class="formulario">
-                <h2>Adicionar banheiro:</h2>
-                <form id="form-contato3">
-                    <div id="msg" class="col-sm-10 offset-sm-1 msg">
-                        <!--<div class="alert alert-warning">Contato não encontrado.</div>-->
-                    </div>
-                    <div class="form-group row">
-
-                        <div class="col-sm-8">
-                            <label for="inputNome">Nome do Local</label>
-                            <input type="text" class="form-control" id="inputNome3" required placeholder="Informe o nome do estabelecimento">
-                        </div>
-                    </div>
-                    <div class="col-sm-8">
-                        <label for="inputEmail">Endereço</label>
-                        <input type="text" class="form-control" id="inputEndereco3" required placeholder="Informe o endereço">
-                    </div>
-                    <div class="col-sm-8">
-                        <label for="inputHorario">Horário de Funcionamento</label>
-                        <input type="text" class="form-control" id="inputHorario3" placeholder="Horário">
-                    </div>
-                    </div>
-                    <div class="form-group row">
-                    <div class="col-sm-8">
-                    <label for="inputTipo">Tipo</label>
-                    <input type="checkbox" id="inputTipo3" aria-label="Normal">Normal
-                    <input type="checkbox" id="inputTipo3" aria-label="Químico">Químico
-                    </div>
-
-                    <div class="col-sm-8">
-                    <label for="inputPago">Pago?</label>
-                    <input type="checkbox" id="inputPago3" aria-label="Sim">Sim
-                    <input type="checkbox" id="inputPago3" aria-label="Não">Não
-                  
-                     </div>
-                    <div class="col-sm-8">
-                    <label for="inputNecessidades">Adaptado para necessidades especiais?</label>
-                    <input type="checkbox" id="inputNecessidades3"aria-label="Sim">Sim
-                    <input type="checkbox" id="inputNecessidades3" aria-label="Não">Não                    
-                     </div>
-                    <br>
-                    <div class="form-group row col-sm-8">                    
-                        <input type="button" class="btn btn-success btn-xsm " id="btnInsert" value="Confirmar" onclick="fechaModal3()">      
-                        <input type="button" class="btn btn-danger btn-xsm" id="btnCancela" value="cancelar"
-                            onclick="fechaModal3()">                     
-                    </div>
-                </form>
+    <!--    Página 4 - Informações úteis   -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-heading text-center">
+                <h2>Informações úteis</h2>
             </div>
-
-        </div>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src="fakedb.js"></script>
-    <script>
-        function exibeContatos() {
-            // Remove todas as linhas do corpo da tabela
-            $("#table-contatos").html("");
-
-            // Popula a tabela com os registros do banco de dados
-            for (i = 0; i < db.data.length; i++) {
-                let contato = db.data[i];
-                $("#table-contatos").append(`<tr ><td ><a href="#" onclick="mostraModal(${contato.id})" class="d">${contato.nome}</a></td><td>${contato.tipo}</td><td>${contato.endereço}</td> <td>
-                    <a onclick="update(${contato.id})" class="d-inline-block" href="#" >Alterar</a> 
-                    <a href="#" onclick="apaga(${contato.id})" class="btn btn-link d-inline-block" id="btnDelete" value="Excluir">Excluir</a> </td></tr>`);
-            }
-        }
-
-        function init() {
-            //Adiciona funções para tratar os eventos 
-            $("#btnInsert").click(function () {
-
-                // Verfica se o formulário está preenchido corretamente
-                if (!$('#form-contato3')[0].checkValidity()) {
-                    displayMessage("Preencha o formulário corretamente.");
-
-                    return;
-                }
-
-                // Obtem os valores dos campos do formulário
-                let campoNome = $("#inputNome3").val();
-                let campoTipo = $("#inputTipo3").val();
-                let campoEndereco = $('#inputEndereco3').val();
-                let campoPago = $('#inputPago3').val();
-                let campoFoto = $("#inputFoto3").val();
-                let campoHorario = $("#inputHorario3").val();
-                let contato = { nome: campoNome, tipo: campoTipo, endereço: campoEndereco, pago: campoPago, foto: campoFoto, horario: campoHorario };
-
-                insertContato(contato);
-
-                // Reexibe os contatos
-                exibeContatos();
-
-                // Limpa o formulario
-                $("#form-contato3")[0].reset();
-                fechaModal3();
-            });
-
-            // Oculta a mensagem de aviso após alguns segundos
-            $('#msg').bind("DOMSubtreeModified", function () {
-                window.setTimeout(function () {
-                    $(".alert").fadeTo(500, 0).slideUp(500, function () {
-                        $(this).remove();
-                    });
-                }, 5000);
-            });
-
-            exibeContatos();
-        }
-    </script>
+            <div class="row">
+                <div class="col-lg-8 my-auto">
+                    <img src="img/pg_em_construcao1.jpg" class="img-construcao" alt="Banheiro público">
+                </div>
+                <div class="col-lg-4 my-auto">
+                    <div class="container-fluid">
 
 
-    <script>    //modal
-        var modal = $('#myModal');
-        var modalAltera = $('#myModal2');
-        var btn = $("#myBtn");
-        var span = $(".close")[0];
-
-        function mostraModal(id) {
-            $("#conteudo").html("");
-            modal.addClass("d-block")
-            for (i = 0; i < db.data.length; i++) {
-                let contato = db.data[i];
-                if (contato.id == id) {
-                    $("#conteudo").html(`<img class="foto" src="${contato.foto}">`)
-                    $("#conteudo").append(`<h3>NOME : ${contato.nome}</h3><br><h3>TIPO : ${contato.tipo}</h3><br><h3> ENDEREÇO : ${contato.endereço}</h3><br><h3> PAGO : <a href="${contato.pago}">${contato.pago}</a></h3><br><h3>HORÁRIO DE FUNCIONAMENTO : ${contato.hora}</h3><br><h3>RANKING : ${contato.id}</h3><br>`)
-
-                    return;
-                }
-            }
-        }
-
-        function mostraModal2(id) {
-            $("#conteudo").html("");
-            modal.addClass("d-block")
-            for (i = 0; i < db.data.length; i++) {
-                let contato = db.data[i];
-                if (contato.id == id) {
-                    $("#conteudo").html(`<img class="foto" src="${contato.foto}">`)
-                    $("#conteudo").append(`<h3>NOME : ${contato.nome}</h3><br><h3>TIPO : ${contato.tipo}</h3><br><h3> ENDEREÇO : ${contato.endereço}</h3><br><h3> PAGO: <a href="${contato.pago}">${contato.pago}</a></h3><br><h3>HORÁRIO DE FUNCIONAMENTO : ${contato.hora}</h3><br><h3>RANKING : ${contato.id}</h3><br>`)
-
-                    return;
-                }
-            }
-        }
-
-        function mostraModal3(id) {
-            $("#conteudo").html("");
-            modal.addClass("d-block")
-            for (i = 0; i < db.data.length; i++) {
-                let contato = db.data[i];
-                if (contato.id == id) {
-                    $("#conteudo").html(`<img class="foto" src="${contato.foto}">`)
-                    $("#conteudo").append(`<h3>NOME : ${contato.nome}</h3><br><h3>TIPO : ${contato.tipo}</h3><br><h3> ENDEREÇO : ${contato.endereço}</h3><br><h3> PAGO : <a href="${contato.pago}">${contato.pago}</a></h3><br><h3>HORÁRIO DE FUNCIONAMENTO : ${contato.hora}</h3><br><h3>RANKING : ${contato.id}</h3><br>`)
-
-                    return;
-                }
-            }
-        }
-
-        function fechaModal() {
-            modal.removeClass("d-block");
-        }
-
-        function fechaModalAltera() {
-            modalAltera.removeClass("d-block");
-
-
-        }
-
-        function abrirFormulario() {
-            $("#myModal3").addClass("d-block");
-            altera(-1)
-
-        }
-        function fechaModal3() {
-            $("#myModal3").removeClass("d-block");
-        }
-
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-        var teste;
-
-        function update(id) {
-            teste = id;
-            $("#conteudo").html("");
-            modalAltera.addClass('d-block')
-            for (i = 0; i < db.data.length; i++) {
-                let contato = db.data[i];
-                if (contato.id == id) {
-                    $("#inputNome2").val(contato.nome);
-                    $("#inputTipo2").val(contato.tipo);
-                    $("#inputEndereco2").val(contato.endereço);
-                    $('#inputPago2').val(contato.pago);
-                    $("#inputFoto2").val(contato.foto);
-                    $('#inputHorario2').val(contato.hora);
-                    $('#inputId2').val(contato.id);
-                }
-            }
-            $("#btnAltera").click(function () {
-                altera(teste);
-            })
-        }
-
-        function altera(id) {
-
-            let campoId = id
-
-            let campoNome = $("#inputNome2").val();
-            let campoTipo = $("#inputTipo2").val();
-            let campoEndereco = $("#inputEndereco2").val();
-            let campoPago = $('#inputPago2').val();
-            let campoHorario = $('#inputHorario2').val();
-            let campoId2 = $('#inputId2').val();
-            let campoFoto2 = $('#inputFoto2').val();
-            let contato = { nome: campoNome, tipo: campoTipo, endereço: campoEndereco, pago: pago, hora: campoHorario, id: campoId2, foto: campoFoto2 };
-            updateContato(parseInt(id), contato);
-            exibeContatos();
-            modalAltera.removeClass("d-block")
-        }
-
-        function apaga(id) {
-            deleteContato(id);
-
-            // Reexibe os contatos
-            exibeContatos();
-
-        }
-
-
-    </script>
-</body>
-<!--    FIM DA BAGUNÇA   -->
-
-</html>
-
-<!--    Página 4 - Informações úteis   -->
-<section class="features" id="features">
-    <div class="container">
-        <div class="section-heading text-center">
-            <h2>Informações úteis</h2>
-        </div>
-        <div class="row">
-            <div class="col-lg-8 my-auto">
-                <img src="img\pg em_construcao1.jpg" class="img-construcao" alt="Banheiro público">
-            </div>
-            <div class="col-lg-4 my-auto">
-                <div class="container-fluid">
-
-
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!--    Página 5 - Fale conosco   -->
-<section class="contact bg-primary" id="contact">
-    <div class="container">
-        <h2>Fale conosco</h2>
+    <!--    Página 5 - Fale conosco   -->
+    <section class="contact bg-primary" id="contact">
+        <div class="container">
+            <h2>Fale conosco</h2>
 
-        <img src="C:\Users\rajha\Dropbox\Engenharia de Software\TIS\TIS_Banheiro_na_rua\img\fale conosco 2.jpg" class="img-fale"
-            alt="Fale conosco">
+            <img src="img\faleConosco2.png" class="img-fale" alt="Fale conosco">
 
-        <p>Rua Cláudio Manoel 1162 </p>
-        <p>31 3131-3131 </p>
+            <p>Rua Cláudio Manoel 1162 </p>
+            <p>31 3131-3131 </p>
 
-        <ul class="list-inline list-social">
-            <li class="list-inline-item social-twitter">
-                <a href="#">
-                    <i class="fa fa-twitter"></i>
-                </a>
-            </li>
-            <li class="list-inline-item social-facebook">
-                <a href="#">
-                    <i class="fa fa-facebook"></i>
-                </a>
-            </li>
-            <li class="list-inline-item social-google-plus">
-                <a href="#">
-                    <i class="fa fa-google-plus"></i>
-                </a>
-            </li>
-        </ul>
-    </div>
-</section>
+            <ul class="list-inline list-social">
+                <li class="list-inline-item social-twitter">
+                    <a href="#">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item social-facebook">
+                    <a href="#">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item social-google-plus">
+                    <a href="mailto:banheironarua@gmail.com">
+                        <i class="fa fa-google-plus"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
 
 
 
-<footer>
+    <footer>
+        <div class="container">
+            <p>&copy; 2017 Mastertech. All Rights Reserved.</p>
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a href="#">Privacy</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#">Terms</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#">FAQ</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
 
-</footer>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper/popper.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-<!-- Bootstrap core JavaScript -->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/popper/popper.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-<!-- Plugin JavaScript -->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for this template -->
+    <script src="js/new-age.min.js"></script>
 
-<!-- Custom scripts for this template -->
-<script src="js/new-age.min.js"></script>
-
-<!-- Importa o Javascript utilizado neste projeto -->
-<script src="js/script.js"></script>
+    <!-- Importa o Javascript utilizado neste projeto -->
+    <script src="js/script.js"></script>
 
 </body>
 

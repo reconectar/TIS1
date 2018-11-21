@@ -1,6 +1,7 @@
 var json = [{
         "id": 1,
-        "title": "Praça da Liberdade \nBanheiro publico\nLimpo.",
+        "title": "Praça da Liberdade",
+        "tipo" : "publico",
         "longitude": "-43.938078",
         "latitude": "-19.932482"
                                 },
