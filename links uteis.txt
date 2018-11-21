@@ -1,0 +1,3 @@
+https://developers.google.com/maps/documentation/javascript/examples/directions-panel
+https://developers.google.com/maps/documentation/javascript/directions#DisplayingResults
+https://developers.google.com/maps/documentation/javascript/examples/directions-travel-modes
