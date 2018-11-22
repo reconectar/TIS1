@@ -5,7 +5,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Banheiro na rua</title>
 
     <!-- Bootstrap core CSS -->
@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 
     <!-- Plugin CSS -->
     <link rel="stylesheet" href="device-mockups/device-mockups.min.css">
@@ -26,6 +27,52 @@
 
 
 </head>
+<style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+        
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .foto{
+           float: right;
+           width: 200PX;
+        }
+        </style>
 
 <body id="page-top">
 
@@ -36,25 +83,20 @@
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#download">Filtros</a>
+                        <a class="nav-link js-scroll-trigger" onclick="mostraModal()" href="#Como Funciona">Visualizar
+                            em lista</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#Como Funciona">Visualizar em lista</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#contato">Adicionar banheiros</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#contato">Contato</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#contato">Informações úteis</a>
+                        <a class="nav-link js-scroll-trigger" onclick="abrirFormulario()" href="#contato">Adicionar
+                            banheiros</a>
                     </li>
                 </ul>
             </div>
+
         </div>
     </nav>
 
@@ -206,75 +248,229 @@
         </div>
     </header>
 
-    <!--    Página 1 - Filtros   -->
-    <section class="download bg-primary text-center" id="download">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 mx-auto">
-                    <h2 class="section-heading">Filtros</p>
-                        <div class="badges">
-                            <img src="img\site-em-construo-01-01.png" class="img-construcao" alt="Banheiro público">
+   <!-------------BAGUNÇA DA RAJHA (modal para adicionar novos banheiros) --------------------------------------------------------------------->
+    <!-- Fechar modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span onclick="fechaModal()" class="close">&times;</span>
+            <div id="conteudo" style="display:inline-block"></div>
+            <div class="col-3" id="image" style="float:right"> </div>
+        </div>
+    </div>    
+    <!-- Modal para o formulário de INSERÇÃO de novos banheiros -->
+    <div id="myModal3" class="modal">
+        <div class="modal-content">
+            <span onclick="fechaModal3()" class="close">&times;</span>
+            <div class="formulario">
+                <h2>Adicionar banheiro:</h2>
+                <form id="form-contato3">
+                    <div id="msg" class="col-sm-10 offset-sm-1 msg">
+                        <!--<div class="alert alert-warning">Contato não encontrado.</div>-->
+                    </div>
+                    <div class="form-group row">
+
+                        <div class="col-sm-8">
+                            <label for="inputNome">Nome do Local</label>
+                            <input type="text" class="form-control" id="inputNome3" required placeholder="Informe o nome do estabelecimento">
                         </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--    Página 2 - Visualizar banheiros em lista   -->
-    <section class="features" id="features">
-        <div class="container">
-            <div class="section-heading text-center">
-                <h2>Visualizar lista</h2>
-                <img src="img\banheiro-publico.jpg" class="img-banheiro" alt="Banheiro público">
-            </div>
-            <div class="row">
-                <div class="col-lg-8 my-auto">
-                    <img src="img\pg_em_construcao1.jpg" class="img-construcao" alt="Banheiro público">
-                </div>
-                <div class="col-lg-4 my-auto">
-                    <div class="container-fluid">
-
-
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--    Página 3 - Adicionar novos banheiros   -->
-    <section class="cta">
-        <div class="cta-content">
-            <div class="container">
-                <h2>Adicionar novos banheiros</h2>
-                <a href="#contact" class="btn btn-outline btn-xl js-scroll-trigger">Adicionar</a>
-                <img src="img\banho2.png" class="img-banheiro" alt="Banheiro público">
-
-            </div>
-        </div>
-        <div class="overlay">
-
-        </div>
-    </section>
-
-    <!--    Página 4 - Informações úteis   -->
-    <section class="features" id="features">
-        <div class="container">
-            <div class="section-heading text-center">
-                <h2>Informações úteis</h2>
-            </div>
-            <div class="row">
-                <div class="col-lg-8 my-auto">
-                    <img src="img/pg_em_construcao1.jpg" class="img-construcao" alt="Banheiro público">
-                </div>
-                <div class="col-lg-4 my-auto">
-                    <div class="container-fluid">
-
-
+                    <div class="col-sm-8">
+                        <label for="inputEmail">Endereço</label>
+                        <input type="text" class="form-control" id="inputEndereco3" required placeholder="Informe o endereço">
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                    <div class="col-sm-8">
+                        <label for="inputHorario">Horário de Funcionamento</label>
+                        <input type="text" class="form-control" id="inputHorario3" placeholder="Horário">
+                    </div>
+                    </div>
+                    <div class="form-group row">
+                    <div class="col-sm-8">
+                    <label for="inputTipo">Tipo</label>
+                    <input type="checkbox" id="inputTipo3" aria-label="Normal">Normal
+                    <input type="checkbox" id="inputTipo3" aria-label="Químico">Químico
+                    </div>
 
-    <!--    Página 5 - Fale conosco   -->
+                    <div class="col-sm-8">
+                    <label for="inputPago">Pago?</label>
+                    <input type="checkbox" id="inputPago3" aria-label="Sim">Sim
+                    <input type="checkbox" id="inputPago3" aria-label="Não">Não
+                  
+                     </div>
+                    <div class="col-sm-8">
+                    <label for="inputNecessidades">Adaptado para necessidades especiais?</label>
+                    <input type="checkbox" id="inputNecessidades3"aria-label="Sim">Sim
+                    <input type="checkbox" id="inputNecessidades3" aria-label="Não">Não                    
+                     </div>
+                    <br>
+                    <div class="form-group row col-sm-8">                    
+                        <input type="button" class="btn btn-success btn-xsm " id="btnInsert" value="Confirmar" onclick="fechaModal3()">      
+                        <input type="button" class="btn btn-danger btn-xsm" id="btnCancela" value="cancelar"
+                            onclick="fechaModal3()">                     
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="fakedb.js"></script>
+    <script>
+        function exibeContatos() {
+            // Remove todas as linhas do corpo da tabela
+            $("#table-contatos").html("");
+
+            // Popula a tabela com os registros do banco de dados
+            for (i = 0; i < db.data.length; i++) {
+                let contato = db.data[i];
+                $("#table-contatos").append(`<tr ><td ><a href="#" onclick="mostraModal(${contato.id})" class="d">${contato.nome}</a></td><td>${contato.tipo}</td><td>${contato.endereço}</td> <td>
+                    <a onclick="update(${contato.id})" class="d-inline-block" href="#" >Alterar</a> 
+                    <a href="#" onclick="apaga(${contato.id})" class="btn btn-link d-inline-block" id="btnDelete" value="Excluir">Excluir</a> </td></tr>`);
+            }
+        }
+        function init() {
+            //Adiciona funções para tratar os eventos 
+            $("#btnInsert").click(function () {
+
+                // Verfica se o formulário está preenchido corretamente
+                if (!$('#form-contato3')[0].checkValidity()) {
+                    displayMessage("Preencha o formulário corretamente.");
+
+                    return;
+                }
+                // Obtem os valores dos campos do formulário
+                let campoNome = $("#inputNome3").val();
+                let campoTipo = $("#inputTipo3").val();
+                let campoEndereco = $('#inputEndereco3').val();
+                let campoPago = $('#inputPago3').val();
+                let campoFoto = $("#inputFoto3").val();
+                let campoHorario = $("#inputHorario3").val();
+                let contato = { nome: campoNome, tipo: campoTipo, endereço: campoEndereco, pago: campoPago, foto: campoFoto, horario: campoHorario };
+                insertContato(contato);
+                // Reexibe os contatos
+                exibeContatos();
+                // Limpa o formulario
+                $("#form-contato3")[0].reset();
+                fechaModal3();
+            });
+            // Oculta a mensagem de aviso após alguns segundos
+            $('#msg').bind("DOMSubtreeModified", function () {
+                window.setTimeout(function () {
+                    $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                        $(this).remove();
+                    });
+                }, 5000);
+            });
+            exibeContatos();
+        }
+    </script>
+    <script>    //modal
+        var modal = $('#myModal');
+        var modalAltera = $('#myModal2');
+        var btn = $("#myBtn");
+        var span = $(".close")[0];
+
+        function mostraModal(id) {
+            $("#conteudo").html("");
+            modal.addClass("d-block")
+            for (i = 0; i < db.data.length; i++) {
+                let contato = db.data[i];
+                if (contato.id == id) {
+                    $("#conteudo").html(`<img class="foto" src="${contato.foto}">`)
+                    $("#conteudo").append(`<h3>NOME : ${contato.nome}</h3><br><h3>TIPO : ${contato.tipo}</h3><br><h3> ENDEREÇO : ${contato.endereço}</h3><br><h3> PAGO : <a href="${contato.pago}">${contato.pago}</a></h3><br><h3>HORÁRIO DE FUNCIONAMENTO : ${contato.hora}</h3><br><h3>RANKING : ${contato.id}</h3><br>`)
+
+                    return;
+                }
+            }
+        }
+        function mostraModal2(id) {
+            $("#conteudo").html("");
+            modal.addClass("d-block")
+            for (i = 0; i < db.data.length; i++) {
+                let contato = db.data[i];
+                if (contato.id == id) {
+                    $("#conteudo").html(`<img class="foto" src="${contato.foto}">`)
+                    $("#conteudo").append(`<h3>NOME : ${contato.nome}</h3><br><h3>TIPO : ${contato.tipo}</h3><br><h3> ENDEREÇO : ${contato.endereço}</h3><br><h3> PAGO: <a href="${contato.pago}">${contato.pago}</a></h3><br><h3>HORÁRIO DE FUNCIONAMENTO : ${contato.hora}</h3><br><h3>RANKING : ${contato.id}</h3><br>`)
+
+                    return;
+                }
+            }
+        }
+        function mostraModal3(id) {
+            $("#conteudo").html("");
+            modal.addClass("d-block")
+            for (i = 0; i < db.data.length; i++) {
+                let contato = db.data[i];
+                if (contato.id == id) {
+                    $("#conteudo").html(`<img class="foto" src="${contato.foto}">`)
+                    $("#conteudo").append(`<h3>NOME : ${contato.nome}</h3><br><h3>TIPO : ${contato.tipo}</h3><br><h3> ENDEREÇO : ${contato.endereço}</h3><br><h3> PAGO : <a href="${contato.pago}">${contato.pago}</a></h3><br><h3>HORÁRIO DE FUNCIONAMENTO : ${contato.hora}</h3><br><h3>RANKING : ${contato.id}</h3><br>`)
+
+                    return;
+                }
+            }
+        }
+        function fechaModal() {
+            modal.removeClass("d-block");
+        }
+        function fechaModalAltera() {
+            modalAltera.removeClass("d-block");
+        }
+        function abrirFormulario() {
+            $("#myModal3").addClass("d-block");
+            altera(-1)
+        }
+        function fechaModal3() {
+            $("#myModal3").removeClass("d-block");
+        }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        var teste;
+        function update(id) {
+            teste = id;
+            $("#conteudo").html("");
+            modalAltera.addClass('d-block')
+            for (i = 0; i < db.data.length; i++) {
+                let contato = db.data[i];
+                if (contato.id == id) {
+                    $("#inputNome2").val(contato.nome);
+                    $("#inputTipo2").val(contato.tipo);
+                    $("#inputEndereco2").val(contato.endereço);
+                    $('#inputPago2').val(contato.pago);
+                    $("#inputFoto2").val(contato.foto);
+                    $('#inputHorario2').val(contato.hora);
+                    $('#inputId2').val(contato.id);
+                }
+            }
+            $("#btnAltera").click(function () {
+                altera(teste);
+            })
+        }
+        function altera(id) {
+            let campoId = id
+            let campoNome = $("#inputNome2").val();
+            let campoTipo = $("#inputTipo2").val();
+            let campoEndereco = $("#inputEndereco2").val();
+            let campoPago = $('#inputPago2').val();
+            let campoHorario = $('#inputHorario2').val();
+            let campoId2 = $('#inputId2').val();
+            let campoFoto2 = $('#inputFoto2').val();
+            let contato = { nome: campoNome, tipo: campoTipo, endereço: campoEndereco, pago: pago, hora: campoHorario, id: campoId2, foto: campoFoto2 };
+            updateContato(parseInt(id), contato);
+            exibeContatos();
+            modalAltera.removeClass("d-block")
+        }
+        function apaga(id) {
+            deleteContato(id);
+            // Reexibe os contatos
+            exibeContatos();
+        }
+    </script>
+</body>
+<!-----------------FIM DA BAGUNÇA RAJHA  --------------------------------------------------------------------------------------------------->
+
+    <!--------------------- Página 2 - Fale conosco----------------------------->
     <section class="contact bg-primary" id="contact">
         <div class="container">
             <h2>Fale conosco</h2>
@@ -303,12 +499,10 @@
             </ul>
         </div>
     </section>
-
-
-
-    <footer>
+     <!--------------------- FIM da Página 2-------------------------------------------->
+    
+     <footer>
         <div class="container">
-            <p>&copy; 2017 Mastertech. All Rights Reserved.</p>
             <ul class="list-inline">
                 <li class="list-inline-item">
                     <a href="#">Privacy</a>
