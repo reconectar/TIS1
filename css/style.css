@@ -49,17 +49,20 @@ hr.light {
     padding: 10px;
     margin: 25px auto 0;
 }
+
 .img-fale {
     width: 450px;
     height: 250px;
     padding: 50px;
     margin: 25px auto 0;
 }
-.img-construcao{
+
+.img-construcao {
     width: 450px;
     height: 400px;
-    padding: 50px; 
+    padding: 50px;
 }
+
 h1,
 h2,
 h3,
@@ -491,7 +494,33 @@ footer ul li a.active {
 }
 
 
-/* Inicio do meu CSS */
+/* Inicio do CSS do mapa */
+
+#map {
+    height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#floating-panel {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: 'Roboto', 'sans-serif';
+    line-height: 30px;
+    padding-left: 10px;
+}
 
 
-/* Fim do meu CSS */
+/* Fim */
