@@ -2,8 +2,8 @@ var json = [{
         "id": 1,
         "title": "Praça da Liberdade",
         "tipo": "publico",
-        "especial": "sim",
-        "pago": "sim",
+        "especial": true,
+        "pago": true,
         "longitude": "-43.938078",
         "latitude": "-19.932482"
                                 },
@@ -11,8 +11,8 @@ var json = [{
         "id": 2,
         "title": "Rua Ricardo Almeida, Dentro do restaurante Santo Augusto",
         "tipo": "publico",
-        "especial": "sim",
-        "pago": "sim",
+        "especial": true,
+        "pago": true,
         "longitude": "-43.937169",
         "latitude": "-19.933168"
                                 },
@@ -20,8 +20,8 @@ var json = [{
         "id": 3,
         "title": "Rua Marlene Penha, lanchonete Sinhazinha",
         "tipo": "publico",
-        "especial": "nao",
-        "pago": "sim",
+        "especial": false,
+        "pago": true,
         "longitude": "-43.941105",
         "latitude": "-19.933869"
                                 },
@@ -29,8 +29,8 @@ var json = [{
         "id": 4,
         "title": "Rua Alberto Magalhães, Dentro da Lojas rede",
         "tipo": "publico",
-        "especial": "nao",
-        "pago": "nao",
+        "especial": false,
+        "pago": false,
         "longitude": "-43.934410",
         "latitude": "-19.934071"
                                 },
@@ -38,8 +38,8 @@ var json = [{
         "id": 5,
         "title": "Rua pedro paulo, Na calçada",
         "tipo": "publico",
-        "especial": "nao",
-        "pago": "sim",
+        "especial": false,
+        "pago": true,
         "longitude": "-43.937682",
         "latitude": "-19.927182"
                                 },
@@ -47,8 +47,8 @@ var json = [{
         "id": 6,
         "title": "Rua 18 de julho, Dentro do Shopping BH",
         "tipo": "publico",
-        "especial": "nao",
-        "pago": "nao",
+        "especial": false,
+        "pago": false,
         "longitude": "-43.932951",
         "latitude": "-19.927152"
                                 }

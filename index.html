@@ -112,21 +112,21 @@
                 <body>
                     <!--Novo mapa com marcadores e descrição-->
                     <div id="mapFilters" style="width:100%;height:524px">
-                        <select id="tipo">
+                        <select id="tipo" onchange="displayMarkers()">
                             <option value="0" hidden>Tipo...</option>
                             <option value="1">Químico</option>
                             <option value="2">Particular</option>
                             <option value="3">Público</option>
                         </select>
-                        <select id="pago">
-                            <option value="0" hidden>Pago?...</option>
-                            <option value="1">Sim</option>
-                            <option value="2">Não</option>
+                        <select id="pago" onchange="displayMarkers()">
+                            <option value="true" hidden>Pago?...</option>
+                            <option value="true">Sim</option>
+                            <option value="false">Não</option>
                         </select>
-                        <select id="especial">
-                            <option value="0" hidden>Necessidades especiais...</option>
-                            <option value="1">Sim</option>
-                            <option value="2">Não</option>
+                        <select id="especial" onchange="displayMarkers()">
+                            <option value="true" hidden>Necessidades especiais...</option>
+                            <option value="true">Sim</option>
+                            <option value="false">Não</option>
                         </select>
                         <select id="mode" class="float-right">
                             <option value="TRANSIT" hidden>Modo de Transporte...</option>
@@ -141,9 +141,10 @@
 
                     <script>
                         var infoWindow;
-        var pos2;
-        var latt;
-        var longg;
+        var dLatt = parseFloat(json[0].latitude);
+        var dLongg = parseFloat(json[0].longitude);
+        var oLatt;
+        var oLongg;
 
         function initMap() {
             var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -166,9 +167,8 @@
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     };
-                    pos2 = pos;
-                    latt = position.coords.latitude
-                    longg = position.coords.longitude;
+                    oLatt = position.coords.latitude
+                    oLongg = position.coords.longitude;
                     calculateAndDisplayRoute(directionsService, directionsDisplay)
                 }, function() {
                     handleLocationError(true, infoWindow, map.getCenter());
@@ -177,35 +177,34 @@
                 // Browser nao suporta geolocalização
                 handleLocationError(false, infoWindow, map.getCenter());
             }
+                for (var i = 0; i < json.length; i++) {
 
-            for (var i = 0; i < json.length; i++) {
+                    // Current object -->
+                    var obj = json[i];
 
-                // Current object -->
-                var obj = json[i];
+                    // Adding a new marker for the object
+                    var customIcon = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(obj.latitude, obj.longitude),
+                        map: map,
+                        title: obj.title,
+                        icon: customIcon // this works, giving the marker a title with the correct title
+                    });
 
-                // Adding a new marker for the object
-                var customIcon = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
-                var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(obj.latitude, obj.longitude),
-                    map: map,
-                    title: obj.title,
-                    icon: customIcon // this works, giving the marker a title with the correct title
-                });
+                    var clicker = addClicker(marker, obj.title);
 
-                var clicker = addClicker(marker, obj.title);
-
-            }
+                }
 
             function addClicker(marker, content) {
                 google.maps.event.addListener(marker, 'click', function() {
 
-                    if (infowindow) {
-                        infowindow.close();
+                    if (infoWindow) {
+                        infoWindow.close();
                     }
-                    infowindow = new google.maps.InfoWindow({
+                    infoWindow = new google.maps.InfoWindow({
                         content: content
                     });
-                    infowindow.open(map, marker);
+                    infoWindow.open(map, marker);
 
                 });
             }
@@ -218,21 +217,18 @@
                 }
             }*/
 
-            console.log(parseFloat(json[0].latitude));
-
             function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 
                 /*if (typeof pos !== "undefined") {*/
                 var selectedMode = document.getElementById('mode').value;
-                var go = 1;
                 directionsService.route({
                     origin: {
-                        lat: latt,
-                        lng: longg
+                        lat: oLatt,
+                        lng: oLongg
                     },
                     destination: {
-                        lat: parseFloat(json[0].latitude),
-                        lng: parseFloat(json[0].longitude)
+                        lat: dLatt,
+                        lng: dLongg
                     },
                     // Note that Javascript allows us to access the constant
                     // using square brackets and a string value as its
@@ -264,8 +260,7 @@
         }
 
     </script>
-                    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC451DUvE76cq7Qko59ESBn-bpsaGHKrT8&callback=initMap">
-                    </script>
+                    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC451DUvE76cq7Qko59ESBn-bpsaGHKrT8&callback=initMap"></script>
                 </body>
             </div>
         </div>
@@ -307,21 +302,21 @@
             <div class="form-group row">
                 <div class="col-sm-8">
                     <label for="inputTipo">Tipo: </label>
-                    <input type="checkbox" id="inputTipo3" aria-label="Quimico" value="Quimico">Químico
-                    <input type="checkbox" id="inputTipo3" aria-label="Particular" value="Particular">Particular
-                    <input type="checkbox" id="inputTipo3" aria-label="Publico" value="Publico">Publico
+                    <input type="checkbox" id="inputTipo3" aria-label="Quimico" value="1">Químico
+                    <input type="checkbox" id="inputTipo3" aria-label="Particular" value="2">Particular
+                    <input type="checkbox" id="inputTipo3" aria-label="Publico" value="3">Publico
                 </div>
 
                 <div class="col-sm-8">
                     <label for="inputPago">Pago:</label>
-                    <input type="checkbox" id="inputPago3" aria-label="Sim">Sim
-                    <input type="checkbox" id="inputPago3" aria-label="Não">Não
+                    <input type="checkbox" id="inputPago3" aria-label="Sim" value="true">Sim
+                    <input type="checkbox" id="inputPago3" aria-label="Não" value="false">Não
 
                 </div>
                 <div class="col-sm-8">
                     <label for="inputNecessidades">Adaptado para necessidades especiais?</label>
-                    <input type="checkbox" id="inputNecessidades3" aria-label="Sim">Sim
-                    <input type="checkbox" id="inputNecessidades3" aria-label="Não">Não
+                    <input type="checkbox" id="inputNecessidades3" aria-label="Sim" value="true">Sim
+                    <input type="checkbox" id="inputNecessidades3" aria-label="Não" value="false">Não
                 </div>
                 <br>
                 <div class="form-group row col-sm-8">
