@@ -272,10 +272,74 @@
     <!-------------BAGUNÇA DA RAJHA (modal para adicionar novos banheiros) --------------------------------------------------------------------->
     <!-- Fechar modal -->
     <div id="myModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content">           
             <span onclick="fechaModal()" class="close">&times;</span>
-            <div id="conteudo" style="display:inline-block"></div>
-            <div class="col-3" id="image" style="float:right"> </div>
+            
+            <table class="table table-borderless">
+                    <thead>
+                      <tr>
+                        <th scope="col">Lista de Banheiros</th>                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>
+                                LOCAL: Praça da Liberdade <br>
+                                TIPO: Público <br>
+                                ESPECIAL: Sim <br>
+                                PAGO: Sim <br>
+                            </td>                            
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>
+                                LOCAL: Rua Ricardo Almeida, Dentro do restaurante Santo Augusto <br>
+                                TIPO: Público <br>
+                                ESPECIAL: Sim <br>
+                                 PAGO: Sim <br>
+                            </td>                            
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>
+                                LOCAL: Rua Marlene Penha, lanchonete Sinhazinha <br>
+                                TIPO: Público <br>
+                                ESPECIAL: Não <br>
+                                PAGO: Sim <br>
+                            </td>                            
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>
+                                LOCAL: Rua Alberto Magalhães, Dentro da Lojas rede <br>
+                                TIPO: Público <br>
+                                ESPECIAL: Não <br>
+                                PAGO: Não <br>
+                            </td>                            
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td>
+                                LOCAL: Rua pedro paulo, Na calçada <br>
+                                TIPO: Público <br>
+                                ESPECIAL: Não <br>
+                                PAGO: Sim <br>
+                            </td>                           
+                         <tr>
+                            <th scope="row">6</th>
+                            <td>
+                                LOCAL: Rua 18 de julho, Dentro do Shopping BH <br>
+                                TIPO: Público <br>
+                                ESPECIAL: Não <br>
+                                PAGO: Não <br>
+                            </td>                            
+                        </tr>                         
+                    </tbody>
+                  </table>
+          
+            <!-- <div id="conteudo" style="display:inline-block"></div>            
+            <div class="col-3" id="image" style="float:right"> </div> -->
         </div>
     </div>
     <!-- Modal para o formulário de INSERÇÃO de novos banheiros -->
@@ -336,12 +400,13 @@
             // Remove todas as linhas do corpo da tabela
             $("#table-contatos").html("");
 
-            // Popula a tabela com os registros do banco de dados
-            for (i = 0; i < db.data.length; i++) {
+            // // // Popula a tabela com os registros do banco de dados
+             for (i = 0; i < db.data.length; i++) {
                 let contato = db.data[i];
-                $("#table-contatos").append(`<tr ><td ><a href="#" onclick="mostraModal(${contato.id})" class="d">${contato.nome}</a></td><td>${contato.tipo}</td><td>${contato.endereço}</td> <td>
-                    <a onclick="update(${contato.id})" class="d-inline-block" href="#" >Alterar</a> 
-                    <a href="#" onclick="apaga(${contato.id})" class="btn btn-link d-inline-block" id="btnDelete" value="Excluir">Excluir</a> </td></tr>`);
+              }
+                 $("#table-contatos").append(`<tr ><td ><a href="#" onclick="mostraModal(${contato.id})" class="d">${contato.title}</a></td><td>${contato.tipo}</td><td>${contato.endereço}</td></td><td>${contato.pago}</td></td><td>${contato.especial}</td> <td>
+                <a onclick="update(${contato.id})" class="d-inline-block" href="#" >Alterar</a> 
+                <a href="#" onclick="apaga(${contato.id})" class="btn btn-link d-inline-block" id="btnDelete" value="Excluir">Excluir</a> </td></tr>`);
             }
         }
 
@@ -356,18 +421,26 @@
                     return;
                 }
                 // Obtem os valores dos campos do formulário
-                let campoNome = $("#inputNome3").val();
+                let campoId = id
+                let campoTitle = $("#inputTitle3").val();
+                let campoEndereco = $("#inputEndereco3").val();
                 let campoTipo = $("#inputTipo3").val();
-                let campoEndereco = $('#inputEndereco3').val();
+                let campoEspecial = $("#inputEspecial3").val();
                 let campoPago = $('#inputPago3').val();
-                let campoFoto = $("#inputFoto3").val();
-                let contato = {
-                    nome: campoNome,
-                    tipo: campoTipo,
-                    endereço: campoEndereco,
-                    pago: campoPago,
-                    foto: campoFoto,
+                let campoLongitude = $('#inputLongitude3').val();
+                let campoLatitude = $('#inputLatitude3').val();
+           
+                 let contato = {
+
+                title : campoTitle,
+                endereco : campoEndereco,
+                tipo : campoTipo,
+                especial : campoEspecial,
+                pago : campoPago,
+                longitude : campoLongitude,
+                latitude : campoLatitude,
                 };
+
                 insertContato(contato);
                 // Reexibe os contatos
                 exibeContatos();
@@ -388,21 +461,20 @@
 
     </script>
     <script>
-        //modal
+       
+       //modal
         var modal = $('#myModal');
         var modalAltera = $('#myModal2');
         var btn = $("#myBtn");
         var span = $(".close")[0];
 
-        function mostraModal(id) {
+        function mostraModal() {
             $("#conteudo").html("");
             modal.addClass("d-block")
             for (i = 0; i < db.data.length; i++) {
                 let contato = db.data[i];
                 if (contato.id == id) {
-                    $("#conteudo").html(`<img class="foto" src="${contato.foto}">`)
-                    $("#conteudo").append(`<h3>NOME : ${contato.nome}</h3><br><h3>TIPO : ${contato.tipo}</h3><br><h3> ENDEREÇO : ${contato.endereço}</h3><br><h3> PAGO : <a href="${contato.pago}">${contato.pago}</a></h3><br><h3>HORÁRIO DE FUNCIONAMENTO : ${contato.hora}</h3><br><h3>RANKING : ${contato.id}</h3><br>`)
-
+                    $("#conteudo").append(`<h3>NOME : ${contato.title}</h3><br><h3>TIPO : ${contato.tipo}</h3><br><h3> ENDEREÇO : ${contato.endereço}</h3><br><h3> PAGO : ${contato.pago}</h3><br><h3> ADAPTADO PARA NECESSIDADES ESPECIAIS : ${contato.especial}</h3><br>`)
                     return;
                 }
             }
@@ -414,8 +486,7 @@
             for (i = 0; i < db.data.length; i++) {
                 let contato = db.data[i];
                 if (contato.id == id) {
-                    $("#conteudo").html(`<img class="foto" src="${contato.foto}">`)
-                    $("#conteudo").append(`<h3>NOME : ${contato.nome}</h3><br><h3>TIPO : ${contato.tipo}</h3><br><h3> ENDEREÇO : ${contato.endereço}</h3><br><h3> PAGO: <a href="${contato.pago}">${contato.pago}</a></h3><br><h3>HORÁRIO DE FUNCIONAMENTO : ${contato.hora}</h3><br><h3>RANKING : ${contato.id}</h3><br>`)
+                    $("#conteudo").append(`<h3>NOME : ${contato.title}</h3><br><h3>TIPO : ${contato.tipo}</h3><br><h3> ENDEREÇO : ${contato.endereço}</h3><br><h3> PAGO : ${contato.pago}</h3><br><h3> ADAPTADO PARA NECESSIDADES ESPECIAIS : ${contato.especial}</h3><br>`)
 
                     return;
                 }
@@ -428,8 +499,7 @@
             for (i = 0; i < db.data.length; i++) {
                 let contato = db.data[i];
                 if (contato.id == id) {
-                    $("#conteudo").html(`<img class="foto" src="${contato.foto}">`)
-                    $("#conteudo").append(`<h3>NOME : ${contato.nome}</h3><br><h3>TIPO : ${contato.tipo}</h3><br><h3> ENDEREÇO : ${contato.endereço}</h3><br><h3> PAGO : <a href="${contato.pago}">${contato.pago}</a></h3><br><h3>HORÁRIO DE FUNCIONAMENTO : ${contato.hora}</h3><br><h3>RANKING : ${contato.id}</h3><br>`)
+                   $("#conteudo").append(`<h3>NOME : ${contato.title}</h3><br><h3>TIPO : ${contato.tipo}</h3><br><h3> ENDEREÇO : ${contato.endereço}</h3><br><h3> PAGO : ${contato.pago}</h3><br><h3> ADAPTADO PARA NECESSIDADES ESPECIAIS : ${contato.especial}</h3><br>`)
 
                     return;
                 }
@@ -457,7 +527,7 @@
                 modal.style.display = "none";
             }
         }
-        var teste;
+       
 
         function update(id) {
             teste = id;
@@ -466,12 +536,13 @@
             for (i = 0; i < db.data.length; i++) {
                 let contato = db.data[i];
                 if (contato.id == id) {
-                    $("#inputNome2").val(contato.nome);
-                    $("#inputTipo2").val(contato.tipo);
+                    $("#inputTitle2").val(contato.title);
                     $("#inputEndereco2").val(contato.endereço);
+                    $("#inputTipo2").val(contato.tipo);
+                    $("#inputEspecial2").val(contato.especial);
                     $('#inputPago2').val(contato.pago);
-                    $("#inputFoto2").val(contato.foto);
-                    $('#inputId2').val(contato.id);
+                    $('#inputLongitude2').val(contato.longitude);
+                    $('#inputLatitude2').val(contato.latitude);
                 }
             }
             $("#btnAltera").click(function () {
@@ -481,19 +552,24 @@
 
         function altera(id) {
             let campoId = id
-            let campoNome = $("#inputNome2").val();
-            let campoTipo = $("#inputTipo2").val();
+            let campoTitle = $("#inputTitle2").val();
             let campoEndereco = $("#inputEndereco2").val();
+            let campoTipo = $("#inputTipo2").val();
+            let campoEspecial = $("#inputEspecial2").val();
             let campoPago = $('#inputPago2').val();
-            let campoId2 = $('#inputId2').val();
-            let campoFoto2 = $('#inputFoto2').val();
+            let campoLongitude = $('#inputLongitude2').val();
+            let campoLatitude = $('#inputLatitude2').val();
+           
             let contato = {
-                nome: campoNome,
-                tipo: campoTipo,
-                endereço: campoEndereco,
-                pago: pago,
-                id: campoId2,
-                foto: campoFoto2
+
+            title : campoTitle,
+            endereco : campoEndereco,
+            tipo : campoTipo,
+            especial : campoEspecial,
+            pago : campoPago,
+            longitude : campoLongitude,
+            latitude : campoLatitude
+
             };
             updateContato(parseInt(id), contato);
             exibeContatos();
