@@ -1,3 +1,7 @@
 https://developers.google.com/maps/documentation/javascript/examples/directions-panel
 https://developers.google.com/maps/documentation/javascript/directions#DisplayingResults
 https://developers.google.com/maps/documentation/javascript/examples/directions-travel-modes
+
+https://appendto.com/2016/09/advanced-google-maps-with-javascript-filtering-and-displaying-information/
+https://stackoverflow.com/questions/22323073/how-to-filter-google-maps-markers-in-one-array-with-select
+https://www.google.com.br/search?q=google+maps+marker+filter&oq=google+maps+marker+filter&aqs=chrome.0.0l6.3967j0j7&sourceid=chrome&ie=UTF-8
