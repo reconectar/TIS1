@@ -197,6 +197,9 @@
 
                             function addClicker(marker, content) {
                                 google.maps.event.addListener(marker, 'click', function () {
+                                    
+                                    dLatt = marker.getPosition().lat();
+                                    dLongg = marker.getPosition().lng();
 
                                     if (infoWindow) {
                                         infoWindow.close();
@@ -205,6 +208,26 @@
                                         content: content
                                     });
                                     infoWindow.open(map, marker);
+                                    
+                                    directionsService.route({
+                                        // origin: document.getElementById('start').value,
+                                        origin: {
+                                            lat: oLatt,
+                                            lng: oLongg
+                                        },
+                                        // destination: marker.getPosition(),
+                                        destination: {
+                                            lat: dLatt,
+                                            lng: dLongg
+                                        },
+                                        travelMode: 'TRANSIT'
+                                    }, function(response, status) {
+                                        if (status === 'OK') {
+                                            directionsDisplay.setDirections(response);
+                                        } else {
+                                            window.alert('Directions request failed due to ' + status);
+                                        }
+                                    });
 
                                 });
                             }
