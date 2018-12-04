@@ -148,6 +148,7 @@
                         var tipo;
                         var pago;
                         var especial;
+                        var markers = [];
                         
 
                         function initMap() {
@@ -199,36 +200,11 @@
                                         position: new google.maps.LatLng(obj.latitude, obj.longitude),
                                         map: map,
                                         title: obj.title,
-                                        icon: customIcon // this works, giving the marker a title with the correct title
+                                        icon: customIcon, // this works, giving the marker a title with the correct title
+                                        animation: google.maps.Animation.DROP
                                     });
                                     var clicker = addClicker(marker, obj.title);
-                                    /*
-                                    console.clear();
-                                    console.log("Banheiro " + i);
-                                    console.log("//especial//");
-                                    console.log(typeof obj.especial);
-                                    console.log(obj.especial);
-                                    console.log(typeof especial);   
-                                    console.log(especial);
-                                    console.log("//pago//");    
-                                    console.log(obj.pago);
-                                    console.log(pago);
-                                    console.log("//tipo//");
-                                    console.log(obj.tipo);
-                                    console.log(tipo);*/
-                                    
-                                    
-                                    /*marker.setVisible(true);
-                                    if((obj.especial != especial) && (especial != "todos")){
-                                        marker.setVisible(false);                                        
-                                    }else{
-                                        marker.setVisible(true);
-                                    }
-                                    if((obj.pago != pago) && (pago != "todos")){
-                                        marker.setVisible(false);
-                                    }else{
-                                        marker.setVisible(true);
-                                    }*/
+                                        
                                     if(((obj.tipo != tipo) && (tipo != "todos")) || ((obj.pago != pago) && (pago != "todos")) || ((obj.especial != especial) && (especial != "todos"))){
                                         marker.setVisible(false);
                                     }else{
