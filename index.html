@@ -280,7 +280,7 @@
                         <th scope="col">Lista de Banheiros</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="#table-contatos">
                     <tr>
                         <th scope="row">1</th>
                         <td>
@@ -403,9 +403,9 @@
             for (i = 0; i < json.length; i++) {
                 let contato = json[i];
             }
-            $("#table-contatos").append(`<tr ><td ><a href="#" onclick="mostraModal(${contato.id})" class="d">${contato.title}</a></td><td>${contato.tipo}</td><td>${contato.endereço}</td></td><td>${contato.pago}</td></td><td>${contato.especial}</td> <td>
-                <a onclick="update(${contato.id})" class="d-inline-block" href="#" >Alterar</a> 
-                <a href="#" onclick="apaga(${contato.id})" class="btn btn-link d-inline-block" id="btnDelete" value="Excluir">Excluir</a> </td></tr>`);
+            $("#table-contatos").append(`<tr ><td ><a href="#" onclick="mostraModal(${json.id})" class="d">${json.title}</a></td><td>${json.tipo}</td><td>${json.endereço}</td></td><td>${json.pago}</td></td><td>${json.especial}</td> <td>
+                <a onclick="update(${json.id})" class="d-inline-block" href="#" >Alterar</a> 
+                <a href="#" onclick="apaga(${json.id})" class="btn btn-link d-inline-block" id="btnDelete" value="Excluir">Excluir</a> </td></tr>`);
         }
 
         function init() {

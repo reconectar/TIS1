@@ -66,3 +66,5 @@ function deleteContato(id) {
     // Atualiza os dados no Local Storage
     localStorage.setItem('db', JSON.stringify(dbb));
 }
+
+//Codigo dos filtros abaixo
