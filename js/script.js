@@ -3,7 +3,7 @@
 console.log('Olá TIS!');
 
 // Caso exista no Local Storage, recupera os dados salvos
-var dbb = JSON.parse(localStorage.getItem('db'));
+var dbb = JSON.parse(localStorage.getItem('dbb'));
 if (!dbb) {
     dbb = json;
 };
@@ -33,7 +33,7 @@ function insertContato(contato) {
     displayMessage("Banheiro inserido com sucesso");
 
     // Atualiza os dados no Local Storage
-    localStorage.setItem('db', JSON.stringify(dbb));
+    localStorage.setItem('dbb', JSON.stringify(dbb));
 }
 
 function updateContato(id, contato) {
@@ -52,7 +52,7 @@ function updateContato(id, contato) {
         displayMessage("Contato alterado com sucesso");
 
     // Atualiza os dados no Local Storage
-    localStorage.setItem('db', JSON.stringify(dbb));
+    localStorage.setItem('dbb', JSON.stringify(dbb));
 }
 
 function deleteContato(id) {
@@ -64,7 +64,7 @@ function deleteContato(id) {
     displayMessage("Banheiro removido com sucesso");
 
     // Atualiza os dados no Local Storage
-    localStorage.setItem('db', JSON.stringify(dbb));
+    localStorage.setItem('dbb', JSON.stringify(dbb));
 }
 
 //Codigo dos filtros abaixo
